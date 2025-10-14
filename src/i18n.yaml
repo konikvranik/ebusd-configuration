@@ -208,48 +208,56 @@ aauchcnamesch16nameofch16:
 aauchcnamesch2nameofch2:
   de: 'Name HK2: Name für HK2'
   en: 'aaucHcNames CH2: name of CH2'
+  cs: 'aaucHcNames CH2: název topného okruhu 2'
   first: 'aaucHcNames CH2: name of CH2'
   locations:
     - vaillant/15.uih.csv::r,w::0x41,0x8
 aauchcnamesch3nameofch3:
   de: 'Name HK3: Name für HK3'
   en: 'aaucHcNames CH3: name of CH3'
+  cs: 'aaucHcNames CH3: název topného okruhu 3'
   first: 'aaucHcNames CH3: name of CH3'
   locations:
     - vaillant/15.uih.csv::r,w::0x41,0x10
 aauchcnamesch4nameofch4:
   de: 'Name HK4: Name für HK4'
   en: 'aaucHcNames CH4: name of CH4'
+  cs: 'aaucHcNames CH4: název topného okruhu 4'
   first: 'aaucHcNames CH4: name of CH4'
   locations:
     - vaillant/15.uih.csv::r,w::0x41,0x18
 aauchcnamesch5nameofch5:
   de: 'Name HK5: Name für HK5'
   en: 'aaucHcNames CH5: name of CH5'
+  cs: 'aaucHcNames CH5: název topného okruhu 5'
   first: 'aaucHcNames CH5: name of CH5'
   locations:
     - vaillant/15.uih.csv::r,w::0x41,0x20
 aauchcnamesch6nameofch6:
   de: 'Name HK6: Name für HK6'
   en: 'aaucHcNames CH6: name of CH6'
+  cs: 'aaucHcNames CH6: název topného okruhu 6'
   first: 'aaucHcNames CH6: name of CH6'
   locations:
     - vaillant/15.uih.csv::r,w::0x41,0x28
 aauchcnamesch7nameofch7:
   de: 'Name HK7: Name für HK7'
   en: 'aaucHcNames CH7: name of CH7'
+  cs: 'aaucHcNames CH7: název topného okruhu 7'
   first: 'aaucHcNames CH7: name of CH7'
   locations:
     - vaillant/15.uih.csv::r,w::0x41,0x30
 aauchcnamesch8nameofch8:
   de: 'Name HK8: Name für HK8'
   en: 'aaucHcNames CH8: name of CH8'
+  cs: 'aaucHcNames CH8: název topného okruhu 8'
   first: 'aaucHcNames CH8: name of CH8'
   locations:
     - vaillant/15.uih.csv::r,w::0x41,0x38
 aauchcnamesch9nameofch9:
   de: 'Name HK9: Name für HK9'
   en: 'aaucHcNames CH9: name of CH9'
+  cs: 'aaucHcNames CH9: název topného okruhu 9'
   first: 'aaucHcNames CH9: name of CH9'
   locations:
     - vaillant/15.uih.csv::r,w::0x41,0x40
