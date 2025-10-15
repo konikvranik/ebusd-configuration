@@ -10,6 +10,7 @@
     "compile-de": "npx tsp compile --emit @ebusd/ebus-typespec --option @ebusd/ebus-typespec.translations=src/de.yaml src/main.tsp --output-dir outcsv.de",
 		"compile-cs": "npx tsp compile --emit @ebusd/ebus-typespec --option @ebusd/ebus-typespec.translations=src/cs.yaml src/main.tsp --output-dir outcsv.cs",
     "compile": "npm run compile-en && npm run compile-de && npm run compile-cs",
+    "update-cs-i18n": "node ./utils/update_i18n_cs.js",
     "preparepublish": "./utils/precheck.sh"
   },
   "repository": {

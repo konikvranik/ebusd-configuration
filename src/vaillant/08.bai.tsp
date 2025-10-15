@@ -20,6 +20,7 @@ import "./bai.0010021901_inc.tsp";
 import "./bai.0010021961_inc.tsp";
 import "./bai.0010043897_inc.tsp";
 import "./bai.0010008045_inc.tsp";
+import "./08.ehp.tsp";
 import "./errors_inc.tsp";
 import "./hcmode_inc.tsp";
 using Ebus;
@@ -388,7 +389,7 @@ namespace Bai {
     hw_7603: Bai._0010043897_inc,
 
     @condition(Id.Id.hw, "=7503")
-    hw_7503: Bai._308523_inc,
+    hw_7503: Ehp,
 
     // final load alternative
     default: Bai._308523_inc,
