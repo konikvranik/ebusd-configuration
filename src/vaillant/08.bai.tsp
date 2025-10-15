@@ -28,9 +28,6 @@ using Ebus.Num;
 using Ebus.Dtm;
 using Ebus.Str;
 
-@condition(Id.Id.hw, "=7503")
-hw_7503: Ehp,
-
 namespace Vaillant;
 
 // @zz(0x08)
@@ -397,5 +394,17 @@ namespace Bai {
 
     Errors_inc,
     Hcmode_inc,
+  }
+}
+
+namespace Vaillant {
+  // @zz(0x08)
+  /** router for 0x08: select family by hardware id */
+  union _08_router {
+    @condition(Id.Id.hw, "=7503")
+    hw_7503: Ehp._includes,
+
+    // fallback to BAI includes for all others
+    default: Bai._includes,
   }
 }
