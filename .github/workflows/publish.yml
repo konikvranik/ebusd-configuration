@@ -43,8 +43,18 @@ jobs:
       - name: Upload zip artifact
         uses: actions/upload-artifact@v4
         with:
-          name: config zips
-          path: ./outcsv/*.zip
+          name: cs
+          path: ./outcsv/cs.zip
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: en
+          path: ./outcsv/en.zip
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: de
+          path: ./outcsv/de.zip
 
   release:
     runs-on: ubuntu-latest
