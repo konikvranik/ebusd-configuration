@@ -27,10 +27,11 @@ using Ebus;
 using Ebus.Num;
 using Ebus.Dtm;
 using Ebus.Str;
-namespace Vaillant;
 
 @condition(Id.Id.hw, "=7503")
 hw_7503: Ehp,
+
+namespace Vaillant;
 
 // @zz(0x08)
 namespace Bai {
