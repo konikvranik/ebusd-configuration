@@ -29,6 +29,9 @@ using Ebus.Dtm;
 using Ebus.Str;
 namespace Vaillant;
 
+@condition(Id.Id.hw, "=7503")
+hw_7503: Ehp,
+
 // @zz(0x08)
 namespace Bai {
   // ,BAI00,generic file for all BAI types
@@ -387,9 +390,6 @@ namespace Bai {
 
     @condition(Id.Id.hw, "=7603")
     hw_7603: Bai._0010043897_inc,
-
-    @condition(Id.Id.hw, "=7503")
-    hw_7503: Ehp,
 
     // final load alternative
     default: Bai._308523_inc,
