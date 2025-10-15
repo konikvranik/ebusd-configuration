@@ -15,6 +15,7 @@ namespace Bai._308523_inc {
   model PartloadHcKW is InstallRegister<power>;
 
   /** d.01 central heating overruntime: water pump overrun time for heating mode */
+  @condition(Id.Id.hw, "!=7503")
   @ext(0xf7, 0x3)
   model WPPostrunTime is InstallRegister<minutes0>;
 
@@ -47,6 +48,7 @@ namespace Bai._308523_inc {
   model ACRoomthermostat is ReadonlyRegister<onoff>;
 
   /** d.09 ext flowsetpoint: minimum out of Kl.7 and eBus flow setpoint */
+  @condition(Id.Id.hw, "!=7503")
   @ext(0x6e, 0x4)
   model ExtFlowTempDesiredMin is ReadonlyRegister<temp>;
 
@@ -169,6 +171,7 @@ namespace Bai._308523_inc {
   // ##### expert level #####
 
   /** external flowsetpoint: Flow target temperature from external regulator to terminal 7-8-9 */
+  @condition(Id.Id.hw, "!=7503")
   @ext(0x25, 0)
   model ExternalFlowTempDesired is ReadonlyRegister<temp>;
 
@@ -346,6 +349,7 @@ namespace Bai._308523_inc {
   model VolatileLockoutIFCGV is ReadonlyRegister<yesno2>;
 
   /** VortexFlowSensor_DK: Predictive Maintenance data, CH water flow */
+  @condition(Id.Id.hw, "!=7503")
   @ext(0xd5, 0)
   model VortexFlowSensor is ReadonlyRegister<UIN>;
 
@@ -427,6 +431,7 @@ namespace Bai._308523_inc {
 
   /** d.18 CH pump mode */
   @inherit(r, wi)
+  @condition(Id.Id.hw, "!=7503")
   @ext(0x49, 0x4)
   model HcPumpMode {
     /** Pump mode */
@@ -435,10 +440,12 @@ namespace Bai._308523_inc {
   }
 
   /** d.19 Mode of 2 speed pump: Operating mode of the two-stage heating pump0: burner mode = 2, pre/post-run = 1; 1: CH + post-run = 1, DHW = 2, 2: as 1 but rotation speed in CH is dependent of heating part load, (defaultsetting)3: always stage 2 */
+  @condition(Id.Id.hw, "!=7503")
   @ext(0xb, 0x4)
   model SecondPumpMode is InstallRegister<UCH>;
 
   /** d.20 Max value tanksetpoint: Adjustment of maximum tank setpoint range (maximum endposition of potmeter) */
+  @condition(Id.Id.hw, "!=7503")
   @ext(0x43, 0x4)
   model HwcTempMax is InstallRegister<temp>;
 
@@ -519,6 +526,7 @@ namespace Bai._308523_inc {
   model CounterStartattempts2 is ReadonlyRegister<temp0>;
 
   /** d.70 diverter valve position: Set diverter valve position 0=normal mode, 1=middle position (GB), 2=permanent CH position */
+  @condition(Id.Id.hw, "!=7503")
   @ext(0x2a, 0x4)
   model ValveMode is InstallRegister<UCH>;
 
@@ -528,6 +536,7 @@ namespace Bai._308523_inc {
 
   /** d.72 postrun time storage */
   @inherit(r, wi)
+  @condition(Id.Id.hw, "!=7503")
   @ext(0x11, 0x4)
   model HwcPostrunTime {
     /** Pump overrun time after charging a storage (charging through C1-C2, external/internal tank with tank sensor) */
@@ -579,6 +588,7 @@ namespace Bai._308523_inc {
   }
 
   /** d.84 Hours till next service: Maintenance indicator:Number of hours until the next maintenance */
+  @condition(Id.Id.hw, "!=7503")
   @ext(0x20, 0x4)
   model HoursTillService is InstallRegister<hoursum2>;
 

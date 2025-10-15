@@ -393,6 +393,7 @@ namespace Bai {
     default: Bai._308523_inc,
 
     Errors_inc,
+    @condition(Id.Id.hw, "!=7503")
     Hcmode_inc,
   }
 }
