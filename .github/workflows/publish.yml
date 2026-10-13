@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: 22.x
       - name: Install packages
-        run: npm install -omit=dev
+        run: npm ci
         working-directory: ./
       - name: Convert typespec files (en+de+cs)
         run: ./utils/precheck.sh
