@@ -43,13 +43,32 @@ namespace Hcmode_inc {
   @base(MF, 0x10)
   model wi_1 {}
 
-  /** Operation mode */
+  /** Operation mode.
+   *  IMPORTANT (verified live on Protherm Ray 14 KE, SW0107/HW7503):
+   *  The boiler accepts flowtempdesired/hwctempdesired from this message ONLY
+   *  in the matching operating mode:
+   *    - hcmode=2 (heat):  flowtempdesired IS applied (30..80C, limited by d.071),
+   *                        hwctempdesired is IGNORED
+   *    - hcmode=3 (water): hwctempdesired IS applied (35..70C, tank charges to it),
+   *                        flowtempdesired is IGNORED
+   *    - hcmode=0 (auto):  BOTH temperatures are IGNORED - the boiler uses its
+   *                        internal display-stored values (D.005 / D.007 on the
+   *                        appliance display, not writable via eBUS on this model).
+   *  The applied mode/values revert to the internal display values approx. 10 min
+   *  after the last SetMode message - send periodically to keep them.
+   *  Example - legionella thermal disinfection (weekly):
+   *    water;50;65;50;0;0;0;0;0;0  => tank charges to 65C
+   *    auto;50;50;50;0;0;0;0;0;0   => back to normal operation */
   @inherit(uw, wi_1)
   @ext(0)
   model SetMode {
+    /** operating mode: 0=auto (heating+DHW, temps from display), 1=off (frost protection only), 2=heat only (flowtempdesired applies), 3=water only (hwctempdesired applies) */
     hcmode: hcmode;
+    /** heating flow temperature setpoint - APPLIED ONLY in hcmode=2 (heat), range limited by d.071 (45-85C) */
     flowtempdesired: temp1;
+    /** DHW storage temperature setpoint - APPLIED ONLY in hcmode=3 (water), tank charges to this temperature */
     hwctempdesired: temp1;
+    /** DHW charging flow temperature - not used by this model */
     hwcflowtempdesired: temp0;
 
     @maxLength(1)
