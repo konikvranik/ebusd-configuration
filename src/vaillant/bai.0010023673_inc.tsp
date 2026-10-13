@@ -60,15 +60,15 @@ namespace Bai._0010023673_inc {
 
   /** d.05 flow/return setpoint: Flow temperature target value or return target value when return regulation is set */
   @ext(0x39, 0)
-  model FlowTempDesired is InstallRegister<temp>;
+  model FlowTempDesired is ReadonlyRegister<temp>;
 
   /** d.06 DHW setpoint: Hot water temperature target value */
   @ext(0xea, 0x3)
-  model HwcTempDesired is InstallRegister<temp>;
+  model HwcTempDesired is ReadonlyRegister<temp>;
 
   /** d.07 Storage setpoint: Warm start temperature value (combination boiler plus only), Storage temperature target value (system boiler only) */
   @ext(0x4, 0)
-  model StorageTempDesired is InstallRegister<temp>;
+  model StorageTempDesired is ReadonlyRegister<temp>;
 
   /** d.08 Room thermostat 230 V: External controls heat demand (Clamp 3-4) */
   @ext(0x2a, 0)

@@ -4,10 +4,20 @@
     "payload": {
       "name": "Kotel rezim",
       "unique_id": "kotel_ray_rezim",
-      "options": ["auto", "off", "heat", "water"],
+      "options": [
+        "auto",
+        "off",
+        "heat",
+        "water"
+      ],
       "command_topic": "ebusd/bai/SetMode/set",
       "command_template": "{% if value == 'water' %}3;50;65;50;0;0;0;0;0;0;0;0{% elif value == 'heat' %}2;50;50;50;0;0;0;0;0;0;0;0{% elif value == 'off' %}1;50;50;50;0;0;0;0;0;0;0;0{% else %}0;50;50;50;0;0;0;0;0;0;0;0{% endif %}",
-      "optimistic": true
+      "optimistic": true,
+      "device": {
+        "identifiers": [
+          "ebusd_bai"
+        ]
+      }
     }
   },
   {
@@ -20,7 +30,12 @@
       "min": 35,
       "max": 70,
       "step": 1,
-      "optimistic": true
+      "optimistic": true,
+      "device": {
+        "identifiers": [
+          "ebusd_bai"
+        ]
+      }
     }
   },
   {
@@ -33,7 +48,12 @@
       "min": 30,
       "max": 80,
       "step": 1,
-      "optimistic": true
+      "optimistic": true,
+      "device": {
+        "identifiers": [
+          "ebusd_bai"
+        ]
+      }
     }
   }
 ]
