@@ -2,14 +2,12 @@
   {
     "topic": "homeassistant/select/kotel_ray_rezim/config",
     "payload": {
-      "name": "Kotel režim",
+      "name": "Kotel rezim",
       "unique_id": "kotel_ray_rezim",
-      "state_topic": "ebusd/bai/SetMode",
-      "value_template": "{{ value_json['hcmode']['value'] }}",
       "options": ["auto", "off", "heat", "water"],
       "command_topic": "ebusd/bai/SetMode/set",
-      "command_template": "{% set m = {'auto':0,'off':1,'heat':2,'water':3}[value] %}{{ m }};{{ states('number.kotel_ray_topeni') | int(50) }};{{ states('number.kotel_ray_tuv') | int(50) }};50;0;0;0;0;0;0;0;0",
-      "device": {"identifiers": ["protherm_ray_ebus"], "name": "Protherm Ray", "manufacturer": "Protherm", "model": "Ray 14 KE (via ebusd)"}
+      "command_template": "{% if value == 'water' %}3;50;65;50;0;0;0;0;0;0;0;0{% elif value == 'heat' %}2;50;50;50;0;0;0;0;0;0;0;0{% elif value == 'off' %}1;50;50;50;0;0;0;0;0;0;0;0{% else %}0;50;50;50;0;0;0;0;0;0;0;0{% endif %}",
+      "optimistic": true
     }
   },
   {
@@ -18,28 +16,24 @@
       "name": "Kotel TUV teplota",
       "unique_id": "kotel_ray_tuv",
       "command_topic": "ebusd/bai/SetMode/set",
-      "command_template": "{% set m = {'auto':0,'off':1,'heat':2,'water':3}[states('select.kotel_ray_rezim') or 'water'] %}{{ m }};{{ states('number.kotel_ray_topeni') | int(50) }};{{ value | int(50) }};50;0;0;0;0;0;0;0;0",
+      "command_template": "water;50;{{ value }};50;0;0;0;0;0;0;0;0",
       "min": 35,
       "max": 70,
       "step": 1,
-      "unit_of_measurement": "°C",
-      "optimistic": true,
-      "device": {"identifiers": ["protherm_ray_ebus"], "name": "Protherm Ray", "manufacturer": "Protherm", "model": "Ray 14 KE (via ebusd)"}
+      "optimistic": true
     }
   },
   {
     "topic": "homeassistant/number/kotel_ray_topeni/config",
     "payload": {
-      "name": "Kotel teplota topení",
+      "name": "Kotel teplota topeni",
       "unique_id": "kotel_ray_topeni",
       "command_topic": "ebusd/bai/SetMode/set",
-      "command_template": "{% set m = {'auto':0,'off':1,'heat':2,'water':3}[states('select.kotel_ray_rezim') or 'heat'] %}{{ m }};{{ value | int(50) }};{{ states('number.kotel_ray_tuv') | int(50) }};50;0;0;0;0;0;0;0;0",
+      "command_template": "heat;{{ value }};50;50;0;0;0;0;0;0;0;0",
       "min": 30,
       "max": 80,
       "step": 1,
-      "unit_of_measurement": "°C",
-      "optimistic": true,
-      "device": {"identifiers": ["protherm_ray_ebus"], "name": "Protherm Ray", "manufacturer": "Protherm", "model": "Ray 14 KE (via ebusd)"}
+      "optimistic": true
     }
   }
 ]
