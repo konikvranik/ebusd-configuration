@@ -12,12 +12,13 @@
       ],
       "command_topic": "ebusd/bai/SetMode/set",
       "command_template": "{% if value == 'water' %}3;50;65;50;0;0;0;0;0;0;0;0{% elif value == 'heat' %}2;50;50;50;0;0;0;0;0;0;0;0{% elif value == 'off' %}1;50;50;50;0;0;0;0;0;0;0;0{% else %}0;50;50;50;0;0;0;0;0;0;0;0{% endif %}",
-      "optimistic": true,
       "device": {
         "identifiers": [
           "ebusd_bai"
         ]
-      }
+      },
+      "state_topic": "ebusd/bai/Status02",
+      "value_template": "{{ value_json['hcmode'].value }}"
     }
   },
   {
@@ -35,7 +36,8 @@
         "identifiers": [
           "ebusd_bai"
         ]
-      }
+      },
+      "mode": "box"
     }
   },
   {
@@ -53,7 +55,8 @@
         "identifiers": [
           "ebusd_bai"
         ]
-      }
+      },
+      "mode": "box"
     }
   }
 ]
