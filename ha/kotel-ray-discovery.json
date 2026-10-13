@@ -17,8 +17,7 @@
           "ebusd_bai"
         ]
       },
-      "state_topic": "ebusd/bai/Status02",
-      "value_template": "{{ (value_json['hwcmode'].value if 'hwcmode' in value_json else value_json['hcmode'].value) | lower }}"
+      "optimistic": true
     }
   },
   {
