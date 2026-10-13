@@ -11,7 +11,7 @@
         "water"
       ],
       "command_topic": "ebusd/bai/SetMode/set",
-      "command_template": "{% if value == 'water' %}3;50;65;50;0;0;0;0;0;0;0;0{% elif value == 'heat' %}2;50;50;50;0;0;0;0;0;0;0;0{% elif value == 'off' %}1;50;50;50;0;0;0;0;0;0;0;0{% else %}0;50;50;50;0;0;0;0;0;0;0;0{% endif %}",
+      "command_template": "{% if value == 'water' %}3;50;{{ states('number.protherm_ray_kotel_tuv_teplota') | int(65) }};50;0;0;0;0;0;0;0;0{% elif value == 'heat' %}2;50;50;{{ states('number.protherm_ray_kotel_teplota_topeni') | int(50) }};0;0;0;0;0;0;0;0{% elif value == 'off' %}1;50;50;50;0;0;0;0;0;0;0;0{% else %}0;50;50;50;0;0;0;0;0;0;0;0{% endif %}",
       "device": {
         "identifiers": [
           "ebusd_bai"
