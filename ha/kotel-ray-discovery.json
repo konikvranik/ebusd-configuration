@@ -31,13 +31,14 @@
       "min": 35,
       "max": 70,
       "step": 1,
-      "optimistic": true,
       "device": {
         "identifiers": [
           "ebusd_bai"
         ]
       },
-      "mode": "box"
+      "mode": "box",
+      "state_topic": "ebusd/bai/SetMode",
+      "value_template": "{{ value_json['hwctempdesired'].value }}"
     }
   },
   {
@@ -50,13 +51,14 @@
       "min": 30,
       "max": 80,
       "step": 1,
-      "optimistic": true,
       "device": {
         "identifiers": [
           "ebusd_bai"
         ]
       },
-      "mode": "box"
+      "mode": "box",
+      "state_topic": "ebusd/bai/SetMode",
+      "value_template": "{{ value_json['flowtempdesired'].value }}"
     }
   }
 ]
