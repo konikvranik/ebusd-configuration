@@ -45,21 +45,26 @@ namespace Hcmode_inc {
 
   /** Operation mode.
    *  IMPORTANT (verified live on Protherm Ray 14 KE, SW0107/HW7503):
-   *  Temperature overrides apply in ALL modes (auto included), but ONLY with
-   *  values <= the setpoints on the appliance panel ("clamp"): higher values
-   *  are ACKed and silently ignored (documented in the Ray service manual -
-   *  the room controller cannot exceed the panel limits).
-   *    - hcmode=0 (auto):  BOTH temperatures are applied (verified: panel
-   *                        TUV 65 / heating 55, eBUS "auto;36.5;50;..." =>
-   *                        boiler FlowTempDesired 36.5, HwcTempDesired 50.0)
-   *    - hcmode=1 (off):   frost protection only
-   *    - hcmode=2 (heat):  heating only, flowtempdesired applies
-   *    - hcmode=3 (water): DHW priority, hwctempdesired applies (tank charges)
+   *  hcmode and flowtempdesired take effect; flowtempdesired applies in auto
+   *  and heat modes (shows up in property d.05, clamped by the panel heating
+   *  maximum).
+   *  hwctempdesired WORKS as a temporary override of the panel DHW setpoint
+   *  (verified by A/B test: periodic "auto;f;50;50" pins the tank at 50 and
+   *  d.06/d.07 read 50; after the telegrams stop, both revert to the panel
+   *  setpoint and the tank charges there). Values above the panel setpoint
+   *  were not tested (panel was already at 65 here).
+   *  d.06 HwcTempDesired / d.07 StorageTempDesired mirror the EFFECTIVE
+   *  target but update SLOWLY (minutes / charge cycle boundaries) - do not
+   *  judge acceptance of a write by reading them back seconds later.
+   *  hwcflowtempdesired is the DHW charge flow cap: the boiler charges with
+   *  flow ~= hwctempdesired + 2..3K margin but not beyond hwcflowtempdesired,
+   *  so a target above hwcflowtempdesired is physically unreachable (verified:
+   *  target 65 + hwcflow 50 => tank stagnant at ~50 for a full hour; target 65
+   *  + hwcflow 80 => flow 67.5, tank charges to 65). Keep it above the target.
+   *  New values apply at charge-cycle start / within minutes; a running tank
+   *  charge is not aborted instantly.
    *  The applied mode/values revert to the internal panel values approx.
-   *  10-20 min after the last SetMode message - send periodically to keep them.
-   *  Example - legionella thermal disinfection (weekly), with panel TUV >= 65:
-   *    auto;50;65;50;0;0;0;0;0;0  => tank charges to 65C
-   *    auto;50;50;50;0;0;0;0;0;0  => back to normal operation */
+   *  10-20 min after the last SetMode message - send periodically to keep them. */
   @inherit(uw, wi_1)
   @ext(0)
   model SetMode {
@@ -67,9 +72,9 @@ namespace Hcmode_inc {
     hcmode: hcmode;
     /** heating flow temperature setpoint - applies in auto and heat modes, clamped by the panel heating setpoint */
     flowtempdesired: temp1;
-    /** DHW storage temperature setpoint - applies in auto and water modes (tank charges to it), clamped by the panel TUV setpoint */
+    /** DHW storage temperature setpoint - overrides the panel DHW setpoint while refreshed periodically (see header note) */
     hwctempdesired: temp1;
-    /** DHW charging flow temperature - not used by this model */
+    /** DHW charging flow temperature - cap for the charge flow; keep above hwctempdesired or the target is unreachable (see header note) */
     hwcflowtempdesired: temp0;
 
     @maxLength(1)
